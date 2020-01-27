@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+</head>
+<body>
+    <div class="container">
+        <div class="row" style="box-shadow: 2px 4px 2px 4px #aaa;">
+            <div class="col s12 center-align">
+                <h1>Laracast: Learn Vue2 Step by Step</h1>
+                <hr>
+                <p>This is a step by step tutorial for learning Vue presented by <a href="https://laracasts.com/series/learn-vue-2-step-by-step/">Laracast</a> </p>
+            </div>
+        </div>
+        <div class="row" id="root">
+            <div class="col s12 center-align">
+                <h2>Examples of Data Binding</h2>
+            </div>  
+        
+            <h4>Silly names</h4>
+            <ul>
+                <li v-for="name in names" v-text="name"></li>
+            </ul>
+            <br>
+            <div class="input-field">
+                <input type="text" id="add_name" v-model="newName">
+                <label for="add_name">Name to Add</label>
+                <button @click="addName">Add to List</button>
+            </div>
+            <div class="attribute-binding" style="padding-top: 4em;">
+                <h4 :class="{ 'indigo-text': indt }" @click="toggleClass">Attribute Binding - Click Here</h4>
+                <button class="btn indigo darken-2" v-bind:title="title">HOver Over Me</button>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+    <script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+
+    <script>
+
+        var app = new Vue({
+            el: '#root',
+            data: {
+                indt: false,
+                newName: "",
+                names: ['Bob', 'Joe', 'Phillip', 'Diller', 'Wombat Magician'],
+                title: "Title is set via JavaScript"
+            },
+            methods: {
+                addName () {
+                    this.names.push(this.newName);
+                    this.newName='';
+                },
+                toggleClass () {
+                    this.indt = !this.indt;
+                }
+            },
+            // mounted() {
+            //    document.querySelector('#add-btn').addEventListener('click', () => {
+            //         let name = document.querySelector('input');
+            //         app.names.push(name.value);
+            //         name.value = '';
+
+            //     });
+            // },
+        });
+        
+    </script>
+</body>
+</html>
