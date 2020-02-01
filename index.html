@@ -7,7 +7,7 @@
     <title>Document</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
+    <link rel="stylesheet" href="index.css">
 </head>
 <body>
     <div class="container">
@@ -19,6 +19,7 @@
             </div>
         </div>
         <div class="row" id="root">
+            <h1>App 1</h1>
             <div class="col s12 center-align">
                 <h2>Examples of Data Binding</h2>
             </div>  
@@ -37,7 +38,37 @@
                 <h4 :class="{ 'indigo-text': indt }" @click="toggleClass">Attribute Binding - Click Here</h4>
                 <button class="btn indigo darken-2" v-bind:title="title">HOver Over Me</button>
             </div>
-            
+        </div>
+        <div class="divider indigo darken-4" style="box-shadow: 1px 2px #aaa;"></div>
+        <div class="row" id="app2">
+            <h1>App2: Computed Properties</h1>
+            <h2 class="center-align indigo-text text-darken-2" v-text="reversedMessage"></h2>
+            <h4>All Tasks - Toggle to Change Status</h4>
+            <ul>
+                <li v-for="task in tasks" style="margin-top: 2em;"> 
+                    {{task.description}}
+                    <span class="lr-pad"></span>
+                    <div class="switch right">
+                        <label>
+                            <input type="checkbox" @click="toggleTask(task)" v-model="task.completed">
+                            <span class="lever"></span>
+                        </label>
+                    </div>
+            </ul>
+            <h4>Incomplete Tasks</h4>
+            <ul>
+                <li v-for="task in incompleteTasks" v-text="task.description"></li>
+            </ul>
+            <h4>Completed Tasks</h4>
+            <ul>
+                <li v-for="task in completedTasks" v-text="task.description"></li>
+            </ul>
+        </div>
+        <div class="divider indigo darken-4"></div>
+        <div class="row" id="app3">
+            <h1>App3: Components & Slots</h1>
+            <task>Things and Stuff</task>
+            <task>Wombats and Stuff</task>
         </div>
     </div>
     
@@ -47,6 +78,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
     <script src="https://unpkg.com/vue@2.1.3/dist/vue.js"></script>
+
+    <script src="main.js"></script>
 
     <script>
 
@@ -77,6 +110,37 @@
             // },
         });
         
+        var app2 = new Vue({
+            el: '#app2',
+
+            data: {
+                message: "Hello World",
+                tasks: [
+                    {description: 'Buy eggs', completed: false},
+                    {description: 'Ride bike', completed: false},
+                    {description: 'Do yoga', completed: true},
+                    {description: 'Read book', completed: true},
+                    {description: 'Make dinner', completed: false},
+                ]
+            },
+            computed: {
+                reversedMessage() {
+                    return this.message.split('').reverse().join('');
+                },
+                incompleteTasks() {
+                    return this.tasks.filter(task => !task.completed)
+                },
+                completedTasks() {
+                    return this.tasks.filter(task => task.completed)
+                }
+            },
+            methods: {
+                toggleTask(task) {
+                    task.completed = !task.completed;
+                }
+            }
+        })
+    
     </script>
 </body>
 </html>

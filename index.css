@@ -1,0 +1,8 @@
+/*
+Custom style rules for my Vue Laracasts tutorial page
+*/
+
+.lr-pad {
+    padding-left: 4em;
+    padding-right: 4em;
+}
