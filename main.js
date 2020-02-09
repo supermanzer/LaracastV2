@@ -218,3 +218,16 @@ new Vue({
     el: '#app5',
 
 });
+
+
+Vue.component('progress-view', {
+    data() {
+        return {
+            completionRate: 50
+        }
+    },
+});
+
+new Vue({
+    el: '#app6'
+})

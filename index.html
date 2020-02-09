@@ -14,16 +14,29 @@
     <div class="container">
         <div class="row bs-24a mt-4">
             <div class="col s12 center-align">
-                <h1>Laracast: Learn Vue2 Step by Step</h1>
+                <h3>Laracast: Learn Vue2 Step by Step</h3>
                 <hr>
-                <p>This is a step by step tutorial for learning Vue presented by <a href="https://laracasts.com/series/learn-vue-2-step-by-step/">Laracast</a> </p>
+                <p>This is a step by step tutorial for learning Vue presented by <a target="_" href="https://laracasts.com/series/learn-vue-2-step-by-step/">Laracast</a> </p>
             </div>
         </div>
        
             <ul class="collapsible" >
-                <li id="app5" class="active">
+                <li id="app6" class="active">
                     <div class="collapsible-header">
-                        <h1>App 5: Named Slots</h1>
+                        <h3>App 6: Inline Components</h3>
+                    </div>
+                    <div class="collapsible-body">
+                        <progress-view inline-template>
+                            <div class="vue-root">
+                                <h5>Your progress through this coures is {{completionRate}}% </h5>
+                                <p><button @click="completionRate += 10">Course Completed</button></p>
+                            </div>
+                        </progress-view>
+                    </div>
+                </li>
+                <li id="app5" class="">
+                    <div class="collapsible-header">
+                        <h3>App 5: Named Slots</h3>
                     </div>
                     <div class="collapsible-body">
                         <v-card>
@@ -37,7 +50,7 @@
                 </li>
                 <li id="app4" class="">
                     <div class="collapsible-header">
-                        <h1>App 4: Component Communication</h1>
+                        <h3>App 4: Component Communication</h3>
                     </div>
                     <div class="collapsible-body">
                         <!-- PARENT - CHILD COMPONENT COMMUNICATION -->
@@ -52,7 +65,7 @@
                 </li>
                 <li id="app3" class="">
                     <div class="collapsible-header">
-                        <h1>App3: Components & Slots</h1>
+                        <h3>App3: Components & Slots</h3>
                     </div>
                     <div class="collapsible-body">
                         <!-- Moving to Components within Components -->
@@ -98,7 +111,7 @@
                 </li>
                 <li id="app2">
                     <div class="collapsible-header">
-                        <h1>App2: Computed Properties</h1>
+                        <h3>App2: Computed Properties</h3>
                     </div>
                     <div class="collapsible-body">
                         <h2 class="center-align indigo-text text-darken-2" v-text="reversedMessage"></h2>
@@ -128,7 +141,7 @@
                 </li>
                 <li id="root">
                     <div class="collapsible-header">
-                        <h1>App 1</h1>
+                        <h3>App 1</h3>
                     </div>
                     <div class="collapsible-body">
                         <div class="col s12 center-align">
