@@ -4,75 +4,159 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Ryan's Crafty Vue Apps</title>
     <!-- Compiled and minified CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="./index.css">
 </head>
 <body>
     <div class="container">
-        <div class="row" style="box-shadow: 2px 4px 2px 4px #aaa;">
+        <div class="row bs-24a mt-4">
             <div class="col s12 center-align">
                 <h1>Laracast: Learn Vue2 Step by Step</h1>
                 <hr>
                 <p>This is a step by step tutorial for learning Vue presented by <a href="https://laracasts.com/series/learn-vue-2-step-by-step/">Laracast</a> </p>
             </div>
         </div>
-        <div class="row" id="root">
-            <h1>App 1</h1>
-            <div class="col s12 center-align">
-                <h2>Examples of Data Binding</h2>
-            </div>  
-        
-            <h4>Silly names</h4>
-            <ul>
-                <li v-for="name in names" v-text="name"></li>
-            </ul>
-            <br>
-            <div class="input-field">
-                <input type="text" id="add_name" v-model="newName">
-                <label for="add_name">Name to Add</label>
-                <button @click="addName">Add to List</button>
-            </div>
-            <div class="attribute-binding" style="padding-top: 4em;">
-                <h4 :class="{ 'indigo-text': indt }" @click="toggleClass">Attribute Binding - Click Here</h4>
-                <button class="btn indigo darken-2" v-bind:title="title">HOver Over Me</button>
-            </div>
-        </div>
-        <div class="divider indigo darken-4" style="box-shadow: 1px 2px #aaa;"></div>
-        <div class="row" id="app2">
-            <h1>App2: Computed Properties</h1>
-            <h2 class="center-align indigo-text text-darken-2" v-text="reversedMessage"></h2>
-            <h4>All Tasks - Toggle to Change Status</h4>
-            <ul>
-                <li v-for="task in tasks" style="margin-top: 2em;"> 
-                    {{task.description}}
-                    <span class="lr-pad"></span>
-                    <div class="switch right">
-                        <label>
-                            <input type="checkbox" @click="toggleTask(task)" v-model="task.completed">
-                            <span class="lever"></span>
-                        </label>
+       
+            <ul class="collapsible" >
+                <li id="app5" class="active">
+                    <div class="collapsible-header">
+                        <h1>App 5: Named Slots</h1>
                     </div>
+                    <div class="collapsible-body">
+                        <v-card>
+                            <template slot="title">Reusable Component - Neat!</template>
+                            This is content will be added to my default, unamed, slot is positioned
+                            <template slot='footer'>
+                                Dynamic set footer content.
+                            </template>
+                        </v-card>
+                    </div>
+                </li>
+                <li id="app4" class="">
+                    <div class="collapsible-header">
+                        <h1>App 4: Component Communication</h1>
+                    </div>
+                    <div class="collapsible-body">
+                        <!-- PARENT - CHILD COMPONENT COMMUNICATION -->
+                        <!-- This triggers a notification to the root element and te user-->
+                        <v-coupon @applied="onCouponApplied"></v-coupon>
+                
+                        <h5 v-if="couponApplied" class="teal-text text-darken-3 center-align">Your coupon code "{{ couponCode }}"" was
+                            applied</h5>
+                        <!-- SIBLING COMPONENT COMMUNICATION -->
+                
+                    </div>
+                </li>
+                <li id="app3" class="">
+                    <div class="collapsible-header">
+                        <h1>App3: Components & Slots</h1>
+                    </div>
+                    <div class="collapsible-body">
+                        <!-- Moving to Components within Components -->
+                        <!-- <task>Things and Stuff</task>
+                                                            <task>Wombats and Stuff</task> -->
+                        <!-- Component within Component Approach-->
+                        <task-list></task-list>
+                        <h4>Custom Message Component</h4>
+                        <p></p>
+                        <message title="Hello World"
+                            body="This is a practical example of a rather simple and far too rigid custom Vue component"></message>
+                        <message title='I Am Reusable' body="Blah blah blah....this is really kind of cool and useful"></message>
+                        <!-- <div class="message">
+                                            <h5 class="indigo darken-2 white-text">Message Title</h5>
+                                            <p class="indigo lighten-3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugit consequuntur, officiis excepturi recusandae, sit possimus optio libero at facere alias culpa! Quisquam vel a dolore modi sint quibusdam. Quo, quod.</p>
+                                        </div> -->
+                        <h4>Custom Modal Components</h4>
+                        <p></p>
+                        <!-- Modal Trigger -->
+                        <a class="waves-effect waves-light btn modal-trigger blue" href="#modal1">Modal</a>
+                
+                        <!-- Modal Structure -->
+                        <mat-modal @close="showModal=false" :class="{open: showModal}" title="Modal Component"
+                            body="I am a modal component.  This data will be set by a response from a server in a perfect world. Do you concur?"
+                            id="modal1"></mat-modal>
+                        <h4>Custom Tab Components</h4>
+                        <p></p>
+                        <v-tabs>
+                            <v-tab id="aboutUs" name="About Us" :active="true">
+                                <p>This tab is about us</p>
+                            </v-tab>
+                            <v-tab id="DjV" name="About Django + Vue">
+                                <p>I appreciate how easy this is to use.</p>
+                            </v-tab>
+                            <v-tab id='ocean' name='Oceanography'>
+                                <p>I still would like to do more work in this field.</p>
+                            </v-tab>
+                            <v-tab id="tands" name="Things and Stuff">
+                                <p>I like to do things and stuff</p>
+                            </v-tab>
+                        </v-tabs>
+                    </div>
+                </li>
+                <li id="app2">
+                    <div class="collapsible-header">
+                        <h1>App2: Computed Properties</h1>
+                    </div>
+                    <div class="collapsible-body">
+                        <h2 class="center-align indigo-text text-darken-2" v-text="reversedMessage"></h2>
+                        <h4>All Tasks - Toggle to Change Status</h4>
+                        <ul>
+                            <li v-for="task in tasks" style="margin-top: 2em;">
+                                {{task.description}}
+                                <span class="lr-pad"></span>
+                                <div class="switch right">
+                                    <label>
+                                        Not Done
+                                        <input type="checkbox" @click="toggleTask(task)" v-model="task.completed">
+                                        <span class="lever"></span>
+                                        Done
+                                    </label>
+                                </div>
+                        </ul>
+                        <h4>Incomplete Tasks</h4>
+                        <ul>
+                            <li v-for="task in incompleteTasks" v-text="task.description"></li>
+                        </ul>
+                        <h4>Completed Tasks</h4>
+                        <ul>
+                            <li v-for="task in completedTasks" v-text="task.description"></li>
+                        </ul>
+                    </div>
+                </li>
+                <li id="root">
+                    <div class="collapsible-header">
+                        <h1>App 1</h1>
+                    </div>
+                    <div class="collapsible-body">
+                        <div class="col s12 center-align">
+                            <h2>Examples of Data Binding</h2>
+                        </div>
+                        
+                        <h4>Silly names</h4>
+                        <ul>
+                            <li v-for="name in names" v-text="name"></li>
+                        </ul>
+                        <br>
+                        <div class="input-field">
+                            <input type="text" id="add_name" v-model="newName">
+                            <label for="add_name">Name to Add</label>
+                            <button @click="addName">Add to List</button>
+                        </div>
+                        <div class="attribute-binding" style="padding-top: 4em;">
+                            <h4 :class="{ 'indigo-text': indt }" @click="toggleClass">Attribute Binding - Click Here</h4>
+                            <button class="btn indigo darken-2" v-bind:title="title">HOver Over Me</button>
+                        </div>
+                    </div>
+                </li>
             </ul>
-            <h4>Incomplete Tasks</h4>
-            <ul>
-                <li v-for="task in incompleteTasks" v-text="task.description"></li>
-            </ul>
-            <h4>Completed Tasks</h4>
-            <ul>
-                <li v-for="task in completedTasks" v-text="task.description"></li>
-            </ul>
-        </div>
-        <div class="divider indigo darken-4"></div>
-        <div class="row" id="app3">
-            <h1>App3: Components & Slots</h1>
-            <task>Things and Stuff</task>
-            <task>Wombats and Stuff</task>
-        </div>
     </div>
     
 
+    <!-- I recognize that using a front-end UI framework that includes JavaScript is kind
+    of not in the spirit of Vue but I'm just trying to get things done.-->
     
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -82,6 +166,7 @@
     <script src="main.js"></script>
 
     <script>
+        MatInit();
 
         var app = new Vue({
             el: '#root',
